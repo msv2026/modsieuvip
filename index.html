@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AORUS DFM VIP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#020d08;
+font-family:'Chakra Petch',sans-serif;
+color:#e0e0e0;
+font-size:13px;
+padding:14px;
+overflow-x:hidden;
+position:relative;
+}
+
+/* BACKGROUND */
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top,#00ff8840,transparent 35%),
+radial-gradient(circle at bottom,#00ff8840,transparent 35%);
+filter:blur(70px);
+z-index:-2;
+}
+
+/* SCANLINE */
+
+body::after{
+content:'';
+position:fixed;
+inset:0;
+background:repeating-linear-gradient(
+to bottom,
+transparent,
+transparent 2px,
+rgba(255,255,255,0.02) 3px
+);
+pointer-events:none;
+z-index:-1;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:420px;
+margin:auto;
+padding-bottom:110px;
+}
+
+/* CARD */
+
+.card{
+background:rgba(7,23,15,0.72);
+backdrop-filter:blur(12px);
+border:1px solid rgba(0,255,120,0.12);
+border-radius:24px;
+padding:14px;
+margin-bottom:14px;
+transition:0.3s;
+box-shadow:
+0 0 20px rgba(0,255,100,0.08),
+inset 0 0 12px rgba(255,255,255,0.02);
+}
+
+.card:hover{
+transform:translateY(-2px);
+box-shadow:
+0 0 25px rgba(0,255,120,0.12),
+inset 0 0 12px rgba(255,255,255,0.02);
+}
+
+/* LINE */
+
+.line{
+height:1px;
+margin:14px 0;
+background:linear-gradient(
+90deg,
+transparent,
+#00ff88,
+transparent
+);
+opacity:0.5;
+}
+
+/* TOP */
+
+.top-box{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+/* LOGO */
+
+.logo{
+width:58px;
+height:58px;
+border-radius:16px;
+box-shadow:0 0 15px rgba(0,255,120,0.25);
+}
+
+/* TITLE */
+
+.game-title{
+font-size:21px;
+font-family:'Orbitron',sans-serif;
+font-weight:700;
+text-shadow:0 0 10px rgba(0,255,120,0.5);
+animation:titleGlow 2.5s infinite;
+}
+
+@keyframes titleGlow{
+0%{opacity:1;}
+50%{opacity:0.75;}
+100%{opacity:1;}
+}
+
+/* TAGS */
+
+.tags{
+display:flex;
+gap:6px;
+margin-top:5px;
+}
+
+.tag{
+padding:4px 10px;
+border-radius:30px;
+font-size:11px;
+font-weight:700;
+}
+
+.tag-green{
+background:#0f2d1f;
+color:#66ff99;
+}
+
+.tag-red{
+background:#2b0b0b;
+color:#ff4d4d;
+animation:redBlink 2s infinite;
+}
+
+@keyframes redBlink{
+0%{opacity:1;}
+50%{opacity:0.6;}
+100%{opacity:1;}
+}
+
+/* APK BUTTON */
+
+.apk-btn{
+margin-left:auto;
+background:linear-gradient(180deg,#ffe86b,#ffc400);
+color:#000;
+padding:10px 14px;
+border-radius:16px;
+font-size:12px;
+font-weight:700;
+text-decoration:none;
+min-width:125px;
+text-align:center;
+box-shadow:0 0 15px rgba(255,200,0,0.3);
+animation:pulse 2s infinite;
+transition:0.25s;
+}
+
+.apk-btn:hover{
+transform:scale(1.03);
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 5px #00ff88}
+50%{box-shadow:0 0 18px #00ff88}
+100%{box-shadow:0 0 5px #00ff88}
+}
+
+/* SECTION */
+
+.section-title{
+text-align:center;
+font-size:22px;
+font-weight:700;
+margin-bottom:10px;
+text-transform:uppercase;
+font-family:'Orbitron',sans-serif;
+}
+
+/* DESC */
+
+.desc{
+text-align:center;
+color:#c7c7c7;
+margin-bottom:12px;
+line-height:1.7;
+}
+
+.green{
+color:#32ff7e;
+font-weight:700;
+text-decoration:none;
+text-shadow:0 0 10px rgba(0,255,120,0.4);
+}
+
+/* BIG BUTTON */
+
+.big-btn{
+display:block;
+text-align:center;
+background:linear-gradient(180deg,#4cff7c,#00c853);
+color:#000;
+padding:15px;
+border-radius:18px;
+text-decoration:none;
+font-size:18px;
+font-weight:700;
+margin-bottom:12px;
+position:relative;
+overflow:hidden;
+transition:0.25s;
+}
+
+.big-btn:hover{
+transform:translateY(-2px) scale(1.02);
+}
+
+.big-btn::before{
+content:'';
+position:absolute;
+top:0;
+left:-120%;
+width:100%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.7),
+transparent
+);
+animation:shine 2.5s infinite;
+}
+
+@keyframes shine{
+0%{left:-120%}
+100%{left:120%}
+}
+
+/* UPDATE */
+
+.update{
+display:block;
+width:max-content;
+margin:auto;
+padding:6px 16px;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+background:rgba(0,255,120,0.08);
+border:1px solid rgba(0,255,120,0.2);
+color:#32ff7e;
+animation:updateGlow 2s infinite;
+}
+
+@keyframes updateGlow{
+0%{opacity:1;}
+50%{opacity:0.7;}
+100%{opacity:1;}
+}
+
+/* CONTACT + GROUP */
+
+.contact-buttons,
+.group-buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.contact-btn,
+.group-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+padding:13px;
+border-radius:16px;
+font-size:14px;
+font-weight:700;
+text-decoration:none;
+color:white;
+transition:0.25s;
+box-shadow:0 0 12px rgba(0,0,0,0.25);
+}
+
+.contact-btn:hover,
+.group-btn:hover{
+transform:scale(1.03);
+}
+
+.contact-icon,
+.group-icon{
+width:22px;
+height:22px;
+object-fit:contain;
+}
+
+.zalo,
+.group-zalo{
+background:linear-gradient(180deg,#3b8cff,#0066ff);
+}
+
+.telegram,
+.group-telegram{
+background:linear-gradient(180deg,#2cbcff,#0088cc);
+}
+
+/* VIDEO */
+
+.video-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px;
+background:rgba(255,255,255,0.04);
+border-radius:18px;
+margin-bottom:12px;
+border:1px solid rgba(255,255,255,0.04);
+transition:0.25s;
+box-shadow:0 0 12px rgba(0,0,0,0.18);
+}
+
+.video-item:hover{
+transform:translateY(-2px);
+border:1px solid rgba(255,0,0,0.2);
+box-shadow:0 0 18px rgba(255,0,0,0.12);
+}
+
+.video-left{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.video-icon{
+width:42px;
+height:42px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(180deg,#32ff7e,#00c853);
+font-size:20px;
+box-shadow:0 0 15px rgba(0,255,120,0.25);
+}
+
+.video-text{
+font-size:15px;
+font-weight:700;
+color:#ffffff;
+}
+
+.youtube-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+background:linear-gradient(180deg,#ff3d3d,#d60000);
+color:white;
+padding:11px 16px;
+border-radius:14px;
+text-decoration:none;
+font-weight:700;
+font-size:13px;
+transition:0.25s;
+box-shadow:0 0 14px rgba(255,0,0,0.2);
+}
+
+.youtube-btn:hover{
+transform:scale(1.04);
+}
+
+.youtube-logo{
+height:16px;
+object-fit:contain;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:18px;
+padding:18px;
+border-radius:22px;
+text-align:center;
+background:rgba(0,255,120,0.04);
+border:1px solid rgba(0,255,120,0.1);
+box-shadow:0 0 20px rgba(0,255,120,0.08);
+}
+
+.footer-logo{
+font-size:20px;
+font-family:'Orbitron',sans-serif;
+font-weight:700;
+color:#32ff7e;
+margin-bottom:8px;
+text-shadow:
+0 0 10px rgba(0,255,120,0.45),
+0 0 20px rgba(0,255,120,0.25);
+letter-spacing:1px;
+}
+
+.footer-text{
+color:#9d9d9d;
+font-size:12px;
+margin-bottom:10px;
+}
+
+.footer-status{
+display:inline-block;
+padding:6px 14px;
+border-radius:30px;
+background:#071d12;
+color:#32ff7e;
+font-size:12px;
+font-weight:700;
+animation:statusGlow 2s infinite;
+}
+
+@keyframes statusGlow{
+0%{opacity:1;}
+50%{opacity:0.6;}
+100%{opacity:1;}
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+position:fixed;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+width:94%;
+max-width:420px;
+background:rgba(5,18,11,0.92);
+backdrop-filter:blur(14px);
+border:1px solid rgba(0,255,120,0.12);
+border-radius:26px;
+padding:10px 8px;
+display:flex;
+justify-content:space-around;
+z-index:999;
+box-shadow:
+0 0 25px rgba(0,255,120,0.08),
+inset 0 0 10px rgba(255,255,255,0.02);
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:6px;
+text-decoration:none;
+color:#b8b8b8;
+font-size:11px;
+font-weight:700;
+transition:0.25s;
+min-width:60px;
+}
+
+.nav-item:hover{
+transform:translateY(-2px);
+color:#32ff7e;
+}
+
+.nav-circle{
+width:42px;
+height:42px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.25s;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.04);
+box-shadow:0 0 12px rgba(0,0,0,0.2);
+}
+
+.bottom-logo{
+width:22px;
+height:22px;
+object-fit:contain;
+}
+
+.nav-home{
+background:linear-gradient(180deg,#32ff7e,#00c853);
+color:#000;
+}
+
+.nav-download{
+background:linear-gradient(180deg,#32ff7e,#00c853);
+}
+
+.nav-telegram{
+background:linear-gradient(180deg,#2cbcff,#0088cc);
+}
+
+.nav-zalo{
+background:linear-gradient(180deg,#3b8cff,#0066ff);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="top-box">
+
+<img class="logo"
+src="https://taigame.online/files/logoaorus.png">
+
+<div>
+
+<div class="game-title">
+AORUS - DFM
+</div>
+
+<div class="tags">
+<div class="tag tag-green">SS9</div>
+<div class="tag tag-red">GARENA</div>
+</div>
+
+</div>
+
+<a href="https://tm.thomod.workers.dev/aorus-dfm-garena.apk"
+target="_blank"
+class="apk-btn">
+
+APK ● CHỐNG VĂNG
+
+</a>
+
+</div>
+
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+
+<div class="section-title">
+DOWNLOAD LOADER
+</div>
+
+<div class="desc">
+
+MUA KEY TRỰC TIẾP TẠI<br>
+
+<a href="https://modsieuvip.com/"
+target="_blank"
+class="green">
+
+modsieuvip.com
+
+</a>
+
+</div>
+
+<a href="https://cdn.android-cheat.com/android/Loader.apk"
+target="_blank"
+class="big-btn">
+
+DOWNLOAD LOADER
+
+</a>
+
+<div class="update">
+Ngày cập nhật: 25/05/2026
+</div>
+
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+
+<div class="section-title">
+CONTACT SUPPORT
+</div>
+
+<div class="contact-buttons">
+
+<a href="https://zalo.me/0378985302"
+target="_blank"
+class="contact-btn zalo">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+class="contact-icon">
+
+<span>Zalo</span>
+
+</a>
+
+<a href="https://t.me/modsieuvip2026"
+target="_blank"
+class="contact-btn telegram">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+class="contact-icon">
+
+<span>Telegram</span>
+
+</a>
+
+</div>
+
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+
+<div class="section-title">
+GROUP
+</div>
+
+<div class="group-buttons">
+
+<a href="https://zalo.me/g/bqigemypblbxgl7vqql2"
+target="_blank"
+class="group-btn group-zalo">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+class="group-icon">
+
+<span>Nhóm Zalo</span>
+
+</a>
+
+<a href="https://t.me/+tW76_LrphCA3Y2Rl"
+target="_blank"
+class="group-btn group-telegram">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+class="group-icon">
+
+<span>Nhóm Telegram</span>
+
+</a>
+
+</div>
+
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+
+<div class="section-title">
+Video hướng dẫn
+</div>
+
+<div class="video-item">
+
+<div class="video-left">
+
+<div class="video-icon">
+⚙️
+</div>
+
+<div class="video-text">
+Cài đặt
+</div>
+
+</div>
+
+<a href="https://youtu.be/_Ds4VzwzUv4?si=I-vPhrW5qms2zPVd"
+target="_blank"
+class="youtube-btn">
+
+<img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+class="youtube-logo">
+
+<span>Xem</span>
+
+</a>
+
+</div>
+
+<div class="video-item">
+
+<div class="video-left">
+
+<div class="video-icon">
+💰
+</div>
+
+<div class="video-text">
+Mua key
+</div>
+
+</div>
+
+<a href="https://youtu.be/LnIFEPFIuqs?si=go5gUhbytXo0JA-e"
+target="_blank"
+class="youtube-btn">
+
+<img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+class="youtube-logo">
+
+<span>Xem</span>
+
+</a>
+
+</div>
+
+<div class="video-item">
+
+<div class="video-left">
+
+<div class="video-icon">
+🔐
+</div>
+
+<div class="video-text">
+Đăng nhập
+</div>
+
+</div>
+
+<a href="LINK_VIDEO_3"
+target="_blank"
+class="youtube-btn">
+
+<img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+class="youtube-logo">
+
+<span>Xem</span>
+
+</a>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<div class="footer-logo">
+MODSIEUVIP.COM
+</div>
+
+<div class="footer-text">
+Gaming Loader • Anti Ban • Daily Update
+</div>
+
+<div class="footer-status">
+🟢 SYSTEM ONLINE
+</div>
+
+</div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+<a href="#" class="nav-item">
+
+<div class="nav-circle nav-home">
+🏠
+</div>
+
+<span>Home</span>
+
+</a>
+
+<a href="https://cdn.android-cheat.com/android/Loader.apk"
+class="nav-item">
+
+<div class="nav-circle nav-download">
+
+<img src="https://cdn-icons-png.flaticon.com/512/724/724933.png"
+class="bottom-logo">
+
+</div>
+
+<span>Download</span>
+
+</a>
+
+<a href="https://t.me/modsieuvip2026"
+class="nav-item">
+
+<div class="nav-circle nav-telegram">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+class="bottom-logo">
+
+</div>
+
+<span>Telegram</span>
+
+</a>
+
+<a href="https://zalo.me/0378985302"
+class="nav-item">
+
+<div class="nav-circle nav-zalo">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+class="bottom-logo">
+
+</div>
+
+<span>Zalo</span>
+
+</a>
+
+</div>
+
+<script>
+
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
+
+</script>
+
+</body>
+</html>
